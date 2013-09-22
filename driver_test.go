@@ -13,4 +13,9 @@ func TestConnect(t *testing.T) {
         t.Fatalf("Error connecting: %v", err)
     }
     defer db.Close()
+
+    _, err = db.Exec("SELECT foo, bar")
+    if err == nil {
+        t.Fatalf("Error Exec(): %v", err)
+    }
 }
