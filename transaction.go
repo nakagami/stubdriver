@@ -4,13 +4,14 @@
 
 package stubdriver
 
-type stubTx struct {
-}
+type stubTx struct {}
 
 func (tx *stubTx) Commit() (err error) {
+    fmt.Println("stubTx.Commit()")
     return
 }
 
 func (tx *stubTx) Rollback() (err error) {
+    fmt.Println("stubTx.Rollback()")
     return
 }
