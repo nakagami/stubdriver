@@ -5,6 +5,7 @@ package stubdriver
 
 import (
     "testing"
+    "fmt"
     "database/sql"
 )
 
@@ -15,8 +16,9 @@ func TestConnect(t *testing.T) {
     }
     defer db.Close()
 
-    _, err = db.Exec("SELECT foo, bar")
-    if err == nil {
-        t.Fatalf("Error Exec(): %v", err)
+    r, err2 := db.Exec("SELECT foo, bar")
+    if err2 != nil {
+        t.Fatalf("Error Exec(): %v", err2)
     }
+    fmt.Println(r)
 }

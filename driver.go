@@ -18,7 +18,8 @@ var globalStubDriver = &stubDriver{}
 func (d *stubDriver) Open(dsn string) (driver.Conn, error) {
     fmt.Println("stubDriver.Open()", dsn)
 
-	return nil, nil
+    sc := &stubConn {}
+	return sc, nil
 }
 
 func init() {
