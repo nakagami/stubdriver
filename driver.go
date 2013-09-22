@@ -7,17 +7,25 @@ import (
 	"database/sql"
 	"database/sql/driver"
     "fmt"
+    "reflect"
 )
 
 type stubDriver struct{}
 
+var globalStubDriver = &stubDriver{}
+
 func (d *stubDriver) Open(dsn string) (driver.Conn, error) {
-    fmt.Println("stubDriver.Open()")
-    fmt.Println(dsn)
+    fmt.Println("stubDriver.Open()", dsn)
 
 	return nil, nil
 }
 
 func init() {
-	sql.Register("stubdriver", &stubDriver{})
+    fmt.Println("init()", reflect.TypeOf(globalStubDriver))
+
+    // for stub test: not call in init() usually
+    db, err := globalStubDriver.Open("DataSourceName")
+    fmt.Println("db, err=\t", db, err)
+
+	sql.Register("stubdriver", globalStubDriver)
 }
