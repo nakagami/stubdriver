@@ -1,4 +1,5 @@
 // Stub (dummy) Driver for Go's database/sql package
+// Written by Hajime Nakagami<nakagami@gmail.com>
 // Public Domain http://creativecommons.org/publicdomain/zero/1.0/
 package stubdriver
 
