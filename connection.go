@@ -6,6 +6,7 @@ package stubdriver
 
 import (
     "database/sql/driver"
+    "fmt"
 )
 
 type stubConn struct{}
@@ -35,8 +36,9 @@ func (sc *stubConn) Prepare(query string) (driver.Stmt, error) {
 func (sc *stubConn) Exec(query string, args []driver.Value) (driver.Result, error) {
     var err error
     fmt.Println("stubConn.Exec()")
+    r := NewStubResult()
 
-    return nil, err
+    return r, err
 }
 
 func (sc *stubConn) Query(query string, args []driver.Value) (driver.Rows, error) {

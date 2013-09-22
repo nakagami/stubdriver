@@ -6,6 +6,7 @@ package stubdriver
 
 import (
     "database/sql/driver"
+    "fmt"
 )
 
 type stubStmt struct {

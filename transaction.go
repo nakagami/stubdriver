@@ -4,6 +4,10 @@
 
 package stubdriver
 
+import (
+    "fmt"
+)
+
 type stubTx struct {}
 
 func (tx *stubTx) Commit() (err error) {
