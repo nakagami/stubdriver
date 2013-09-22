@@ -19,3 +19,7 @@ func (tx *stubTx) Rollback() (err error) {
     fmt.Println("stubTx.Rollback()")
     return
 }
+
+func NewStubTransaction() *stubTx {
+    return new(stubTx)
+}

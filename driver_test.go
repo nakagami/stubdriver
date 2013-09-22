@@ -1,6 +1,7 @@
 // Stub (dummy) Driver for Go's database/sql package
 // Written by Hajime Nakagami<nakagami@gmail.com>
 // Public Domain http://creativecommons.org/publicdomain/zero/1.0/
+
 package stubdriver
 
 import (
@@ -20,5 +21,12 @@ func TestConnect(t *testing.T) {
     if err2 != nil {
         t.Fatalf("Error Exec(): %v", err2)
     }
-    fmt.Println(r)
+
+    tx, _ := db.Begin()
+    r, _ = tx.Exec("SELECT with transaction1")
+    tx.Rollback()
+
+    r, _ = tx.Exec("SELECT with transaction2")
+    fmt.Println("\tResult:", r)
+    tx.Commit()
 }
