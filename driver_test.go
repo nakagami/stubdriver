@@ -54,5 +54,19 @@ func TestConnect(t *testing.T) {
         fmt.Println("\t", n, s)
     }
 
+    fmt.Println("8")
+    stmt, _ := db.Prepare("INSERT (?,?) ")
+    stmt.Exec(1,2)
+
+    fmt.Println("9")
+    stmt, _ = db.Prepare("SELECT where id=? and name=? ")
+
+    rows, _ = stmt.Query(1, "ABC")
+
+    for rows.Next() {
+        rows.Scan(&n, &s)
+        fmt.Println("\t", n, s)
+    }
+
     fmt.Println("------------")
 }

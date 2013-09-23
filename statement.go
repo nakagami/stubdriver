@@ -19,9 +19,10 @@ func (stmt *stubStmt) Close() (err error) {
 }
 
 func (stmt *stubStmt) NumInput() int {
-    fmt.Println("stubStmt.NumInput()")
+    numInput := 2
+    fmt.Println("stubStmt.NumInput()", numInput)
 
-    return 0
+    return numInput
 }
 
 func (stmt *stubStmt) Exec(args []driver.Value) (driver.Result, error) {
@@ -40,6 +41,6 @@ func (stmt *stubStmt) Query(args []driver.Value) (driver.Rows, error) {
     return r, err
 }
 
-func NewStubStatement() *stubStatement {
-    return new(stubStatement)
+func NewStubStatement() *stubStmt {
+    return new(stubStmt)
 }
