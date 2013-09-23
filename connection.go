@@ -14,8 +14,8 @@ type stubConn struct{}
 func (sc *stubConn) Begin() (driver.Tx, error) {
     var err error
     fmt.Println("stubConn.Begin()")
-
-    return nil, err
+    t := NewStubTransaction()
+    return t, err
 }
 
 
@@ -35,7 +35,7 @@ func (sc *stubConn) Prepare(query string) (driver.Stmt, error) {
 
 func (sc *stubConn) Exec(query string, args []driver.Value) (driver.Result, error) {
     var err error
-    fmt.Println("stubConn.Exec()")
+    fmt.Println("stubConn.Exec()", query)
     r := NewStubResult()
 
     return r, err
@@ -43,7 +43,8 @@ func (sc *stubConn) Exec(query string, args []driver.Value) (driver.Result, erro
 
 func (sc *stubConn) Query(query string, args []driver.Value) (driver.Rows, error) {
     var err error
-    fmt.Println("stubConn.Query()")
+    fmt.Println("stubConn.Query()", query)
 
-    return nil, err
+    r := NewStubRows()
+    return r, err
 }

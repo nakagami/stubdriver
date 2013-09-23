@@ -27,13 +27,15 @@ func (stmt *stubStmt) NumInput() int {
 func (stmt *stubStmt) Exec(args []driver.Value) (driver.Result, error) {
     var err error
     fmt.Println("stubStmt.Exec()")
+    r := NewStubResult()
 
-    return nil, err
+    return r, err
 }
 
 func (stmt *stubStmt) Query(args []driver.Value) (driver.Rows, error) {
     var err error
     fmt.Println("stubStmt.Query()")
 
-    return nil, err
+    r := NewStubRows()
+    return r, err
 }
