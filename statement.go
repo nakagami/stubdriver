@@ -39,3 +39,7 @@ func (stmt *stubStmt) Query(args []driver.Value) (driver.Rows, error) {
     r := NewStubRows()
     return r, err
 }
+
+func NewStubStatement() *stubStatement {
+    return new(stubStatement)
+}

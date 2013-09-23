@@ -29,8 +29,8 @@ func (sc *stubConn) Prepare(query string) (driver.Stmt, error) {
     var err error
 
     fmt.Println("stubConn.Prepare()")
-
-    return nil, err
+    t := NewStubStatement()
+    return t, err
 }
 
 func (sc *stubConn) Exec(query string, args []driver.Value) (driver.Result, error) {
