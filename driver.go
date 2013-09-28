@@ -7,8 +7,8 @@ package stubdriver
 import (
 	"database/sql"
 	"database/sql/driver"
-    "fmt"
-    "reflect"
+	"fmt"
+	"reflect"
 )
 
 type stubDriver struct{}
@@ -16,18 +16,18 @@ type stubDriver struct{}
 var globalStubDriver = &stubDriver{}
 
 func (d *stubDriver) Open(dsn string) (driver.Conn, error) {
-    fmt.Println("stubDriver.Open()", dsn)
+	fmt.Println("stubDriver.Open()", dsn)
 
-    sc := &stubConn {}
+	sc := &stubConn{}
 	return sc, nil
 }
 
 func init() {
-    fmt.Println("init()", reflect.TypeOf(globalStubDriver))
+	fmt.Println("init()", reflect.TypeOf(globalStubDriver))
 
-    // for stub test: not call in init() usually
-    db, err := globalStubDriver.Open("DataSourceName")
-    fmt.Println("db, err=\t", db, err)
+	// for stub test: not call in init() usually
+	db, err := globalStubDriver.Open("DataSourceName")
+	fmt.Println("db, err=\t", db, err)
 
 	sql.Register("stubdriver", globalStubDriver)
 }

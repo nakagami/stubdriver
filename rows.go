@@ -5,38 +5,38 @@
 package stubdriver
 
 import (
-    "database/sql/driver"
-    "fmt"
-    "io"
+	"database/sql/driver"
+	"fmt"
+	"io"
 )
 
 type stubRows struct {
-    curNum int
+	curNum int
 }
 
 func NewStubRows() *stubRows {
-    return new(stubRows)
+	return new(stubRows)
 }
 
-func (rows *stubRows) Columns() ([]string) {
-    fmt.Println("stubRows.Columns()")
-    return []string{"Column1", "Column2"}
+func (rows *stubRows) Columns() []string {
+	fmt.Println("stubRows.Columns()")
+	return []string{"Column1", "Column2"}
 }
 
 func (rows *stubRows) Close() (er error) {
-    fmt.Println("stubRows.Close()")
-    return
+	fmt.Println("stubRows.Close()")
+	return
 }
 
 func (rows *stubRows) Next(dest []driver.Value) (err error) {
-    fmt.Println("stubRows.Next()")
-    rows.curNum++
-    if rows.curNum < 5 {
-        dest[0] = rows.curNum
-        dest[1] = "ABC"
-    } else {
-        err = io.EOF
-    }
+	fmt.Println("stubRows.Next()")
+	rows.curNum++
+	if rows.curNum < 5 {
+		dest[0] = rows.curNum
+		dest[1] = "ABC"
+	} else {
+		err = io.EOF
+	}
 
-    return
+	return
 }

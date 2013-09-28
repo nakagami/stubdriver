@@ -5,42 +5,42 @@
 package stubdriver
 
 import (
-    "database/sql/driver"
-    "fmt"
+	"database/sql/driver"
+	"fmt"
 )
 
 type stubStmt struct {
 }
 
 func (stmt *stubStmt) Close() (err error) {
-    fmt.Println("stubStmt.Close()")
+	fmt.Println("stubStmt.Close()")
 
-    return
+	return
 }
 
 func (stmt *stubStmt) NumInput() int {
-    numInput := 2
-    fmt.Println("stubStmt.NumInput()", numInput)
+	numInput := 2
+	fmt.Println("stubStmt.NumInput()", numInput)
 
-    return numInput
+	return numInput
 }
 
 func (stmt *stubStmt) Exec(args []driver.Value) (driver.Result, error) {
-    var err error
-    fmt.Println("stubStmt.Exec()")
-    r := NewStubResult()
+	var err error
+	fmt.Println("stubStmt.Exec()")
+	r := NewStubResult()
 
-    return r, err
+	return r, err
 }
 
 func (stmt *stubStmt) Query(args []driver.Value) (driver.Rows, error) {
-    var err error
-    fmt.Println("stubStmt.Query()")
+	var err error
+	fmt.Println("stubStmt.Query()")
 
-    r := NewStubRows()
-    return r, err
+	r := NewStubRows()
+	return r, err
 }
 
 func NewStubStatement() *stubStmt {
-    return new(stubStmt)
+	return new(stubStmt)
 }

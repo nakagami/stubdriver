@@ -5,21 +5,21 @@
 package stubdriver
 
 import (
-    "fmt"
+	"fmt"
 )
 
-type stubTx struct {}
+type stubTx struct{}
 
 func (tx *stubTx) Commit() (err error) {
-    fmt.Println("stubTx.Commit()")
-    return
+	fmt.Println("stubTx.Commit()")
+	return
 }
 
 func (tx *stubTx) Rollback() (err error) {
-    fmt.Println("stubTx.Rollback()")
-    return
+	fmt.Println("stubTx.Rollback()")
+	return
 }
 
 func NewStubTransaction() *stubTx {
-    return new(stubTx)
+	return new(stubTx)
 }

@@ -5,46 +5,45 @@
 package stubdriver
 
 import (
-    "database/sql/driver"
-    "fmt"
+	"database/sql/driver"
+	"fmt"
 )
 
 type stubConn struct{}
 
 func (sc *stubConn) Begin() (driver.Tx, error) {
-    var err error
-    fmt.Println("stubConn.Begin()")
-    t := NewStubTransaction()
-    return t, err
+	var err error
+	fmt.Println("stubConn.Begin()")
+	t := NewStubTransaction()
+	return t, err
 }
 
-
 func (sc *stubConn) Close() (err error) {
-    fmt.Println("stubConn.Close()")
+	fmt.Println("stubConn.Close()")
 
-    return
+	return
 }
 
 func (sc *stubConn) Prepare(query string) (driver.Stmt, error) {
-    var err error
+	var err error
 
-    fmt.Println("stubConn.Prepare()")
-    t := NewStubStatement()
-    return t, err
+	fmt.Println("stubConn.Prepare()")
+	t := NewStubStatement()
+	return t, err
 }
 
 func (sc *stubConn) Exec(query string, args []driver.Value) (driver.Result, error) {
-    var err error
-    fmt.Println("stubConn.Exec()", query)
-    r := NewStubResult()
+	var err error
+	fmt.Println("stubConn.Exec()", query)
+	r := NewStubResult()
 
-    return r, err
+	return r, err
 }
 
 func (sc *stubConn) Query(query string, args []driver.Value) (driver.Rows, error) {
-    var err error
-    fmt.Println("stubConn.Query()", query)
+	var err error
+	fmt.Println("stubConn.Query()", query)
 
-    r := NewStubRows()
-    return r, err
+	r := NewStubRows()
+	return r, err
 }

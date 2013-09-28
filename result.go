@@ -5,18 +5,18 @@
 package stubdriver
 
 type stubResult struct {
-    affectedRows int64
-    insertId     int64
+	affectedRows int64
+	insertId     int64
 }
 
 func (res *stubResult) LastInsertId() (int64, error) {
-    return res.insertId, nil
+	return res.insertId, nil
 }
 
 func (res *stubResult) RowsAffected() (int64, error) {
-    return res.affectedRows, nil
+	return res.affectedRows, nil
 }
 
 func NewStubResult() *stubResult {
-    return new(stubResult)
+	return new(stubResult)
 }
