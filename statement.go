@@ -19,7 +19,7 @@ func (stmt *stubStmt) Close() (err error) {
 }
 
 func (stmt *stubStmt) NumInput() int {
-	numInput := 2
+	numInput := -1
 	fmt.Println("stubStmt.NumInput()", numInput)
 
 	return numInput
