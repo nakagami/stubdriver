@@ -54,6 +54,10 @@ func TestConnect(t *testing.T) {
 		fmt.Println("\t", n, s)
 	}
 
+	fmt.Println("7-2")
+	err = db.QueryRow("select column1, column2 from foo").Scan(&n, &s)
+	fmt.Println("\t", n, s)
+
 	fmt.Println("8")
 	stmt, _ := db.Prepare("INSERT (?,?) ")
 	stmt.Exec(1, 2)
