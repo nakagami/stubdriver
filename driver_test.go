@@ -72,5 +72,9 @@ func TestConnect(t *testing.T) {
 		fmt.Println("\t", n, s)
 	}
 
+	fmt.Println("9-2")
+	err = stmt.QueryRow(1, "ABC").Scan(&n, &s)
+	fmt.Println("\t", n, s)
+
 	fmt.Println("------------")
 }
